@@ -8,10 +8,10 @@ def list_length_match (input_lists : list, filling_val = False):
     Default is filling empty values with False. 
     The filling values will be appended to the end of the list. 
     '''
-    result_lists = []
     if is_only_list(input_lists):
         input_lists.sort(key=len, reverse=True)
-        longest_len = input_lists[0]
+        result_lists = []
+        longest_len = len(input_lists[0])
         for temp in input_lists:
             result_lists.append(temp.extend([filling_val]*(longest_len - len(temp))))
         return result_lists

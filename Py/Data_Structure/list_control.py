@@ -9,11 +9,12 @@ def list_length_match (input_lists : list, filling_val = False):
     The filling values will be appended to the end of the list. 
     '''
     if is_only_list(input_lists):
+        print('here')
         input_lists.sort(key=len, reverse=True)
         result_lists = []
         longest_len = len(input_lists[0])
         for temp in input_lists:
-            result_lists.append(temp.extend([filling_val]*(longest_len - len(temp))))
+            result_lists.append(temp + ([filling_val] * (longest_len - len(temp))))
         return result_lists
 
     return 'Err' #input Value is not list.
@@ -52,6 +53,6 @@ def is_only_list(test_val):
     '''
     Check if it is double linked list.
     '''
-    if is_one_data_type(test_val) == 'list':
+    if is_one_data_type(test_val) == list:
         return True
     return False

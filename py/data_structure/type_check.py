@@ -63,7 +63,21 @@ def param_check_deco(func):
             else:
                 return error_msg
         elif args_length != 0 and kwargs_length != 0:
-            return func(*args, **kwargs)
+            if not isinstance(arg_type_list, list) :
+                return 'ERR_arg_type_list should be list type object'
+            elif len(arg_type_list) != args_length :
+                return 'ERR_Length of arg_type_list and count of arguments are not matched'
+            else:
+                for arg_type, arg in zip(arg_type_list, args):
+                    error_msg = check_type(arg_type, arg)
+                    if error_msg:
+                        continue
+                    else:
+                        return error_msg
+            if error_msg:
+                return func(*args, **kwargs)
+            else:
+                return error_msg
         else :
             return 'ERR'
     return inner
